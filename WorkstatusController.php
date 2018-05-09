@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\models;
 
 use Yii;
 use backend\models\Workstatus;
@@ -104,7 +104,7 @@ class WorkstatusController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    } 
+    }
 
     /**
      * Finds the Workstatus model based on its primary key value.
