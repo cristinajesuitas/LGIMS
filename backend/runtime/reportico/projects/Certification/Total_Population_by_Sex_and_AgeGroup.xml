@@ -1,0 +1,45 @@
+<?xml version="1.0"?><Report><ReportQuery><Format><ReportTitle>Population by Sex and Age Group</ReportTitle><ReportDescription></ReportDescription><PageSize>.DEFAULT</PageSize><PageOrientation>.DEFAULT</PageOrientation><TopMargin></TopMargin><BottomMargin></BottomMargin><RightMargin></RightMargin><LeftMargin></LeftMargin><pdfFont></pdfFont><pdfFontSize></pdfFontSize><PreExecuteCode>NONE</PreExecuteCode><formBetweenRows>solidline</formBetweenRows><gridDisplay>.DEFAULT</gridDisplay><gridSortable>yes</gridSortable><gridSearchable>yes</gridSearchable><gridPageable>.DEFAULT</gridPageable><gridPageSize>.DEFAULT</gridPageSize></Format><Datasource><SourceType>database</SourceType><SourceConnection><DatabaseType>mysql</DatabaseType><DatabaseName></DatabaseName><HostName></HostName><ServiceName></ServiceName><UserName></UserName><Password></Password></SourceConnection></Datasource><EntryForm><Query><TableSql></TableSql><WhereSql></WhereSql><GroupSql></GroupSql><RowSelection>all</RowSelection><SQL><QuerySql></QuerySql><SQLRaw>SELECT 
+CASE 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 4 THEN '0-4' 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 9 THEN '5-9'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 14 THEN '10-14'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 19 THEN '15-19'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 24 THEN '20-24'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 29 THEN '25-29'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;=34 THEN '30-34'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 39 THEN '35-39'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 44 THEN '40-44'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 49 THEN '45-49'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 54 THEN '50-54'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 59 THEN '55-59'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 64 THEN '60-64'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 69 THEN '65-69'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 74 THEN '70-74'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  &gt;= 80 THEN '75-80'
+END AS AGE,
+SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) as M,
+SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) as F,
+COUNT(*) as Total_Sexes
+FROM cap_citizen
+GROUP BY AGE 
+
+</SQLRaw></SQL><QueryColumns><QueryColumn><Name>AGE</Name><TableName></TableName><ColumnName>CASE 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 4 THEN '0-4' 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 9 THEN '5-9'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 14 THEN '10-14'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 19 THEN '15-19'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 24 THEN '20-24'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 29 THEN '25-29'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;=34 THEN '30-34'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 39 THEN '35-39'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 44 THEN '40-44'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 49 THEN '45-49'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 54 THEN '50-54'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 59 THEN '55-59'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 64 THEN '60-64'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 69 THEN '65-69'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') &lt;= 74 THEN '70-74'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  &gt;= 80 THEN '75-80'
+END AS</ColumnName><ColumnType>char</ColumnType><ColumnLength>30</ColumnLength><Format><column_display>show</column_display><content_type>plain</content_type><ColumnStartPDF></ColumnStartPDF><justify>left</justify><ColumnWidthPDF></ColumnWidthPDF><ColumnWidthHTML></ColumnWidthHTML><column_title></column_title><tooltip></tooltip><group_header_label>0</group_header_label><group_header_label_xpos></group_header_label_xpos><group_header_data_xpos></group_header_data_xpos><group_trailer_label>0</group_trailer_label></Format></QueryColumn><QueryColumn><Name>M</Name><TableName></TableName><ColumnName>SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) as</ColumnName><ColumnType>char</ColumnType><ColumnLength>30</ColumnLength><Format><column_display>show</column_display><content_type>plain</content_type><ColumnStartPDF></ColumnStartPDF><justify>left</justify><ColumnWidthPDF></ColumnWidthPDF><ColumnWidthHTML></ColumnWidthHTML><column_title></column_title><tooltip></tooltip><group_header_label>0</group_header_label><group_header_label_xpos></group_header_label_xpos><group_header_data_xpos></group_header_data_xpos><group_trailer_label>0</group_trailer_label></Format></QueryColumn><QueryColumn><Name>F</Name><TableName></TableName><ColumnName>SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) as</ColumnName><ColumnType>char</ColumnType><ColumnLength>30</ColumnLength><Format><column_display>show</column_display><content_type>plain</content_type><ColumnStartPDF></ColumnStartPDF><justify>left</justify><ColumnWidthPDF></ColumnWidthPDF><ColumnWidthHTML></ColumnWidthHTML><column_title></column_title><tooltip></tooltip><group_header_label>0</group_header_label><group_header_label_xpos></group_header_label_xpos><group_header_data_xpos></group_header_data_xpos><group_trailer_label>0</group_trailer_label></Format></QueryColumn><QueryColumn><Name>Total_Sexes</Name><TableName></TableName><ColumnName>COUNT(*) as</ColumnName><ColumnType>char</ColumnType><ColumnLength>30</ColumnLength><Format><column_display>show</column_display><content_type>plain</content_type><ColumnStartPDF></ColumnStartPDF><justify>left</justify><ColumnWidthPDF></ColumnWidthPDF><ColumnWidthHTML></ColumnWidthHTML><column_title></column_title><tooltip></tooltip><group_header_label>0</group_header_label><group_header_label_xpos></group_header_label_xpos><group_header_data_xpos></group_header_data_xpos><group_trailer_label>0</group_trailer_label></Format></QueryColumn></QueryColumns><OrderColumns></OrderColumns><PreSQLS></PreSQLS></Query><Assignments></Assignments><Criteria></Criteria><Output><PageHeaders><PageHeader><LineNumber>1</LineNumber><HeaderText>Municipality of Tanay
+
+</HeaderText><Format><ColumnStartPDF></ColumnStartPDF><justify>center</justify><ColumnWidthPDF></ColumnWidthPDF><ShowInPDF>yes</ShowInPDF><ShowInHTML>yes</ShowInHTML></Format></PageHeader></PageHeaders><PageFooters></PageFooters><DisplayOrders><DisplayOrder><ColumnName>AGE</ColumnName><OrderNumber>1</OrderNumber></DisplayOrder><DisplayOrder><ColumnName>M</ColumnName><OrderNumber>2</OrderNumber></DisplayOrder><DisplayOrder><ColumnName>F</ColumnName><OrderNumber>3</OrderNumber></DisplayOrder><DisplayOrder><ColumnName>Total_Sexes</ColumnName><OrderNumber>4</OrderNumber></DisplayOrder></DisplayOrders><Groups></Groups><Graphs></Graphs></Output></EntryForm></ReportQuery></Report>
