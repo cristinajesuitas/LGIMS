@@ -1,0 +1,45 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+use backend\models\Region;
+use backend\models\Province;
+use backend\models\Municipal;
+
+/* @var $this yii\web\View */
+/* @var $searchModel backend\models\RegionSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="barangay-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Add Barangay', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+		'summary' => "{begin} of {end}",
+        'columns' => [
+		
+		
+            /*['class' => 'yii\grid\SerialColumn'],
+            'id',*/
+			//'cap_region_id',
+			['label'=>'Region','value'=>function ($model, $index, $dataColumn) { return $model->capRegion->name; }],
+			['label'=>'Province','value'=>function ($model, $index, $dataColumn) { return $model->capProvince->name; }],
+			['label'=>'Municipal','value'=>function ($model, $index, $dataColumn) { return $model->capMunicipal->name; }],
+			
+			//'cap_province_id',
+			//'cap_municipal_id',
+            'name',
+           'code',
+
+            ['class' => 'yii\grid\ActionColumn','template' => '{view} {update}'],
+        ],
+    ]); ?>
+</div>
