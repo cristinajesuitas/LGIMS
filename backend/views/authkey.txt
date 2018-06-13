@@ -1,0 +1,6 @@
+create table if not exists cap_agencyname (
+	cap_user_id int(3) unsigned ,
+	agencyname varchar(60) unique not null,
+	primary key (cap_user_id)
+
+);
