@@ -1,0 +1,6 @@
+create table if not exists cap_religion(
+id int(3) unsigned not null auto_increment,
+name varchar (100) unique not null,
+code varchar (3) not null,
+primary key (id)
+);

@@ -1,0 +1,9 @@
+ALTER TABLE cap_user
+add column if not exists 
+fname varchar(20) not null after id,
+add column if not exists
+mname varchar(20) not null after fname,
+add column if not exists
+lname varchar(20) not null after mname,
+add column if not exists
+cap_lguname_ID int(5) unsigned not null after lname;

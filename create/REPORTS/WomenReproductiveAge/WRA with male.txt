@@ -1,0 +1,34 @@
+SELECT 
+CASE 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 AND 19 AND  cap_citizen.cap_sex_id = '13' THEN '15-19'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 20 AND 24 AND  cap_citizen.cap_sex_id = '13' THEN '20-24'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 25 AND 29 AND  cap_citizen.cap_sex_id = '13' THEN '25-29'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 30 AND 34 AND  cap_citizen.cap_sex_id = '13' THEN '30-34'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 35 AND 39 AND  cap_citizen.cap_sex_id = '13' THEN '35-39'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 40 AND 44 AND  cap_citizen.cap_sex_id = '13' THEN '40-44'
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 45 AND 49 AND  cap_citizen.cap_sex_id = '13' THEN '45-49'
+END AS AGE,
+CASE 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 AND 19 AND  cap_citizen.cap_sex_id = '13' THEN  SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 20 AND 24 AND  cap_citizen.cap_sex_id = '13' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 25 AND 29 AND  cap_citizen.cap_sex_id = '13' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 30 AND 34 AND  cap_citizen.cap_sex_id = '13' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 35 AND 39 AND  cap_citizen.cap_sex_id = '13' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 40 AND 44 AND  cap_citizen.cap_sex_id = '13' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 45 AND 49 AND  cap_citizen.cap_sex_id = '13' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) 
+END AS MALE,
+CASE 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 AND 19 AND  cap_citizen.cap_sex_id = '12' THEN  SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 20 AND 24 AND  cap_citizen.cap_sex_id = '12' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 25 AND 29 AND  cap_citizen.cap_sex_id = '12' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 30 AND 34 AND  cap_citizen.cap_sex_id = '12' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 35 AND 39 AND  cap_citizen.cap_sex_id = '12' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 40 AND 44 AND  cap_citizen.cap_sex_id = '12' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 45 AND 49 AND  cap_citizen.cap_sex_id = '12' THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) 
+END AS FEMALE
+FROM cap_citizen
+GROUP BY AGE
+UNION ALL
+SELECT 'TOTAL', SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  BETWEEN 15 and 49 AND cap_citizen.cap_sex_id = '13'),
+SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  BETWEEN 15 and 49 AND cap_citizen.cap_sex_id = '12')
+FROM cap_citizen

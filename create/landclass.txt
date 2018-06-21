@@ -1,0 +1,12 @@
+create table if not exists cap_landclass (
+id int(2) unsigned not null auto_increment,
+cap_lgulevel_ID int(1)unsigned not null, 
+name varchar (10) unique not null,
+code varchar (9) not null,
+primary key (id),
+key cap_lgulevel_ID(cap_lgulevel_ID),
+constraint cap_landclass_cap_lgulevel_ID 
+foreign key(cap_lgulevel_ID) references cap_lgulevel(ID)
+);
+
+	

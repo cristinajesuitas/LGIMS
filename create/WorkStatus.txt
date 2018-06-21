@@ -1,0 +1,6 @@
+create table if not exists cap_workstatus(
+id int (2) unsigned not null auto_increment,
+name varchar (70) unique not null,
+code varchar (2) not null,
+primary key (id) 
+);

@@ -1,0 +1,7 @@
+create table if not exists cap_lgulevel(
+ID int(1) unsigned not null auto_increment ,
+name varchar(100)unique not null ,
+code varchar(4)not null ,
+primary key (id)
+
+);

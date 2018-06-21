@@ -1,0 +1,7 @@
+create table if not exists cap_occupation (
+ID int(2) unsigned not null auto_increment ,
+name varchar(120)unique not null ,
+code varchar(2)not null ,
+primary key (id)
+
+);

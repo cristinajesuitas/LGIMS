@@ -1,0 +1,20 @@
+create table if not exists cap_address (
+cap_citizen_id int(6) unsigned not null,
+HouseNo varchar(5) null,
+LotNo varchar(5) null,
+BlockNo varchar(5) null,
+UnitNo varchar(5) null,
+BldgName varchar(40) null,
+Street varchar(40) not null,
+Purok varchar(40) null,
+Subdivision varchar(40) null,
+cap_barangay_id int(5) unsigned not null,
+cap_municipal_id int(4) unsigned not null,
+cap_province_id int(2) unsigned not null,
+cap_region_id int(2) unsigned not null,
+primary key (cap_citizen_id),
+foreign key (cap_region_id) references cap_region(id),
+foreign key (cap_province_id) references cap_province(id),
+foreign key (cap_municipal_id) references cap_municipal(id),
+foreign key (cap_barangay_id) references cap_barangay(id)
+)

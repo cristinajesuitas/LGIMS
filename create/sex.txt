@@ -1,0 +1,6 @@
+CREATE TABLE if not exists cap_Sex (
+    ID int(1) unsigned not null auto_increment , 
+	name varchar(6) unique not null,
+	code varchar(1) not null,
+	primary key(ID)
+);

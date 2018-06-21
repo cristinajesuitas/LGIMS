@@ -1,0 +1,31 @@
+SELECT 
+DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  AS AGE,
+CASE 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 AND 49 THEN  SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) 
+END AS FEMALE,
+CASE
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  THEN SUM(CASE WHEN cap_citizen.cap_civilstatus_id = '1' THEN 1 ELSE 0 END) 
+END AS SINGLE,
+CASE
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  THEN SUM(CASE WHEN cap_citizen.cap_civilstatus_id = '2' THEN 1 ELSE 0 END) 
+END AS MARRIED,
+CASE
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  THEN SUM(CASE WHEN cap_citizen.cap_civilstatus_id = '3' THEN 1 ELSE 0 END) 
+END AS WIDOWED,
+CASE
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  THEN SUM(CASE WHEN cap_citizen.cap_civilstatus_id = '4' THEN 1 ELSE 0 END) 
+END AS DIVORCED_SEPERATED,
+CASE
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  THEN SUM(CASE WHEN cap_citizen.cap_civilstatus_id = '5' THEN 1 ELSE 0 END)
+END AS COMMON_LAW_LIVE_IN,
+CASE
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  THEN SUM(CASE WHEN cap_citizen.cap_civilstatus_id = '6' THEN 1 ELSE 0 END)
+END AS UNKNOWN
+FROM cap_citizen
+WHERE DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') >=15 AND 49
+GROUP BY AGE
+UNION ALL
+SELECT 'TOTAL', SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  BETWEEN 15 and 49 AND cap_citizen.cap_sex_id = '12'), SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 and 49 AND cap_citizen.cap_civilstatus_id = '1'),   SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 and 49 AND cap_citizen.cap_civilstatus_id = '2'), SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 and 49 AND cap_citizen.cap_civilstatus_id = '3'), SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 and 49 AND cap_citizen.cap_civilstatus_id = '4'), 
+SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 and 49 AND cap_citizen.cap_civilstatus_id = '5'), 
+SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 15 and 49 AND cap_citizen.cap_civilstatus_id = '6')
+FROM cap_citizen

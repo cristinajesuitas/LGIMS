@@ -1,0 +1,24 @@
+alter table cap_lguprofile
+Add column if not exists
+lguname varchar(20) not null after cap_lguclass_id,
+Add column if not exists
+lgucategory varchar(20) not null after cap_lgulevel_id,
+Add column if not exists
+lgudistrict varchar(20) not null name,
+Add column if not exists
+language varchar(20) not null website,
+Add column if not exists
+religion varchar(20) not null totalbrgy,
+Add column if not exists
+ethnicity varchar(20) not null landarea,
+Add column if not exists
+citizenship varchar(20) not null zipcode,
+cap_lguname_ID int(5) unsigned not null after lguname,
+add key cap_lguname_id(cap_lguname_id),
+cap_lgucategory_ID int(5) unsigned not null after lgucategory,
+add key cap_lgucategory_id(cap_lgucategory_id),
+cap_lgudistrict_ID int(5) unsigned not null after lgudistrict,
+add key cap_lgudistrict_id(cap_lgudistrict_id),
+cap_lguname_ID int(5) unsigned not null after lguname,
+add key cap_lguname_id(cap_lguname_id),
+AFTER code

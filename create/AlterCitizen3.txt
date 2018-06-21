@@ -1,0 +1,36 @@
+alter table cap_citizen
+add column if not exists
+HouseNo varchar (5) not null,
+add column if not exists
+Lot varchar (5) not null,
+add column if not exists
+Blk varchar (5) not null,
+add column if not exists
+Phase varchar (5) not null,
+add column if not exists
+FloorNo varchar (5) not null,
+add column if not exists
+BldgName varchar (40) not null,
+add column if not exists
+Street varchar (40) not null,
+add column if not exists
+Sitio varchar (40) not null,
+add column if not exists
+Subdivision varchar (40) not null,
+add column if not exists
+Condominium varchar (40) not null,
+add column if not exists
+cap_region_id int(2) unsigned not null,
+add key cap_region_id(cap_region_id),
+add key constraint cap_citizen_cap_region_id foreign key (cap_region_id)
+references cap_region(id),
+add column if not exists
+cap_province_id int(2) unsigned not null,
+add key cap_province_id(cap_province_id),
+add key constraint cap_citizen_cap_province_id foreign key (cap_province_id)
+references cap_province(id),
+add column if not exists
+cap_municipal_id int(4) unsigned not null,
+add key cap_municipal_id(cap_municipal_id),
+add key constraint cap_citizen_cap_municipal_id foreign key (cap_municipal_id)
+references cap_municipal(id);

@@ -1,0 +1,8 @@
+CREATE TABLE if not exists cap_lguname(
+	ID int(5) unsigned not null auto_increment,
+	cap_lgulevel_id int(1) unsigned not null,
+	Name varchar(50) not null,
+	primary key(ID),
+	key cap_lgulevel_ID(cap_lgulevel_ID),
+	constraint cap_lguname_cap_lgulevel_ID foreign key(cap_lgulevel_ID) references cap_lgulevel(ID)
+);

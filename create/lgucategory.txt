@@ -1,0 +1,10 @@
+create table if not exists cap_lgucategory (
+	id int(2) unsigned not null auto_increment,
+	cap_lgulevel_id int(2) unsigned not null,
+	name varchar(40) unique not null,
+	code varchar(9) not null,
+	primary key(id),
+	key cap_lgulevel_id(cap_lgulevel_id),
+	constraint cap_lgucategory_cap_lgulevel_id foreign key(cap_lgulevel_id) references cap_lgulevel(id)
+);
+	

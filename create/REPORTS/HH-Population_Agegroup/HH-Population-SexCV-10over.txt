@@ -1,0 +1,13 @@
+SELECT  
+cap_citizen.cap_sex_id AS CIVIL_STATUS,
+SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) AS MALES,
+SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) AS FEMALES,
+SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) + SUM(CASE WHEN cap_citizen.cap_sex_id = '12'  THEN 1 ELSE 0 END) END AS TOTAL_SEXES
+FROM cap_citizen
+WHERE DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')>10
+GROUP BY CIVIL_STATUS
+union all
+select 'Total', SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') >10 AND cap_citizen.cap_sex_id = '13'),SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') 10 AND cap_citizen.cap_sex_id = '12'), 
+SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') >10) 
+FROM cap_citizen
+

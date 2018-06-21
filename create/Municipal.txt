@@ -1,0 +1,13 @@
+create table if not exists cap_municipal (
+	id int(4) unsigned not null auto_increment,
+	cap_region_id int(2) unsigned not null,
+	cap_province_id int(2) unsigned not null,
+	name varchar(40) unique not null,
+	code varchar(9) not null,
+	primary key(id),
+	key cap_region_id(cap_region_id),
+	key cap_province_id(cap_province_id),
+	constraint cap_municipal_cap_region_id foreign key(cap_region_id) references cap_region(id),
+	constraint cap_municipal_cap_province_id foreign key(cap_province_id) references cap_province(id)
+);
+	

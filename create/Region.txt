@@ -1,0 +1,7 @@
+create table if not exists cap_region (
+	id int(2) unsigned not null auto_increment,
+	name varchar(40) unique not null,
+	code varchar(9) not null,
+	primary key(id)
+	);
+	

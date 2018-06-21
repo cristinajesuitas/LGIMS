@@ -1,0 +1,6 @@
+create table if not exists cap_civilStatus(
+id int(1) unsigned not null auto_increment,
+name varchar (20) unique not null,
+code varchar (1) not null,
+primary key (id)
+);

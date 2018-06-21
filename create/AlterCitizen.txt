@@ -1,0 +1,3 @@
+alter table cap_citizeninfo
+ADD COLUMN fname varchar(20) not null
+AFTER code

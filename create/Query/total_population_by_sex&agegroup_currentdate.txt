@@ -1,0 +1,12 @@
+SELECT 
+CASE WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birth_date, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(birth_date, '00-%m-%d'))) <= 20 THEN '1-20'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birth_date, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(birth_date, '00-%m-%d'))) <= 30 THEN '20-30'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birth_date, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(birth_date, '00-%m-%d'))) <= 50 THEN '30-50'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birth_date, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(birth_date, '00-%m-%d'))) <= 50 THEN '50-100' END AS age,
+    
+SUM(CASE WHEN dob_table.Sex = 'male' THEN 1 ELSE 0 END)  AS Males,
+SUM(CASE WHEN dob_table.Sex = 'female' THEN 1 ELSE 0 END) AS Females,
+ count(*) as Total_Sexes
+
+ FROM dob_table
+GROUP BY AGE AND SEX

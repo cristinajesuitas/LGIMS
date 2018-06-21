@@ -1,0 +1,16 @@
+create table if not exists cap_barangay (
+	id int(5) unsigned not null auto_increment,
+	cap_region_id int(2) unsigned not null,
+	cap_province_id int(2) unsigned not null,
+	cap_municipal_id int(4) unsigned not null,
+	name varchar(40) not null,
+	code varchar(9) not null,
+	primary key(id),
+	key cap_region_id(cap_region_id),
+	key cap_province_id(cap_province_id),
+	key cap_municipal_id(cap_municipal_id),	
+	constraint cap_barangay_cap_region_id foreign key(cap_region_id) references cap_region(id),
+	constraint cap_barangay_cap_province_id foreign key(cap_province_id) references cap_province(id),
+	constraint cap_barangay_cap_municipal_id foreign key(cap_municipal_id) references cap_municipal(id)
+);
+	

@@ -1,0 +1,16 @@
+SELECT  
+DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')  AS AGE,
+CASE 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') >10 THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) END AS MALES,
+CASE 
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') >10 THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '12' THEN 1 ELSE 0 END) END AS FEMALES,
+CASE
+WHEN DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') >10  THEN SUM(CASE WHEN cap_citizen.cap_sex_id = '13' THEN 1 ELSE 0 END) + SUM(CASE WHEN cap_citizen.cap_sex_id = '12'  THEN 1 ELSE 0 END) END AS TOTAL_SEXES
+FROM cap_citizen
+WHERE DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y')>10
+GROUP BY AGE
+union all
+select 'Total', SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 10 AND 200 AND cap_citizen.cap_sex_id = '13'),SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') BETWEEN 10 AND 200 AND cap_citizen.cap_sex_id = '12'), 
+SUM(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),bdate)), '%Y') >10) 
+FROM cap_citizen
+
